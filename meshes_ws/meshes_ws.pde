@@ -3,10 +3,12 @@ Mesh mesh;
 void setup() {
   size(600, 600, P3D);
   mesh = new Mesh();
+  frameRate(1000);
 }
 
 void draw() {
   background(0);
+  text("Mesh mode: " + mesh.mode + ". Rendering mode: " + (mesh.retained ? "retained" : "immediate") + ". FPS: " + frameRate, 10 ,10);
   lights();
   // draw the mesh at the canvas center
   // while performing a little animation

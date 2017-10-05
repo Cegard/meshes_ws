@@ -3,9 +3,10 @@ class Mesh {
   // see: https://en.wikipedia.org/wiki/Bounding_sphere
   float radius = 200;
   PShape shape;
+  // mesh representation
   ArrayList<PVector> vertices;
 
-  // rendering
+  // rendering mode
   boolean retained;
 
   // visual modes
@@ -28,14 +29,14 @@ class Mesh {
   // TODO: implement me
   void build() {
     vertices = new ArrayList<PVector>();
-    
+
     // for example if we were to render a quad:
     vertices.add(new PVector(-150,150,0));
     vertices.add(new PVector(150,150,0));
     vertices.add(new PVector(150,-150,0));
     vertices.add(new PVector(-150,-150,0));
     //...
-    
+
     shape = createShape();
     shape.beginShape(QUADS);
     for(PVector v : vertices)
@@ -57,16 +58,16 @@ class Mesh {
 
   void draw() {
     pushStyle();
-    
+
     // mesh visual attributes
     // manipuate me as you wish
     int strokeWeight = 3;
     color lineColor = color(255, retained ? 0 : 255, 0);
     color faceColor = color(0, retained ? 0 : 255, 255, 100);
-    
+
     strokeWeight(strokeWeight);
     stroke(lineColor);
-    fill(faceColor);    
+    fill(faceColor);
     // visual modes
     switch(mode) {
     case 1:
