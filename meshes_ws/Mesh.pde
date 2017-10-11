@@ -62,10 +62,11 @@ class Mesh {
     int strokeWeight = 3;
     color lineColor = color(255, retained ? 0 : 255, 0);
     color faceColor = color(0, retained ? 0 : 255, 255, 100);
-
+    
     strokeWeight(strokeWeight);
     stroke(lineColor);
     fill(faceColor);
+    
     // visual modes
     switch(mode) {
     case 1:
@@ -76,6 +77,8 @@ class Mesh {
       break;
     case 3:
       lineColor = color(0, 0, 0);
+      strokeWeight = 1;
+      strokeWeight(strokeWeight);
       stroke(lineColor);
       break;
     }
