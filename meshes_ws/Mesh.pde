@@ -1,7 +1,7 @@
 class Mesh {
   // radius refers to the mesh 'bounding sphere' redius.
   // see: https://en.wikipedia.org/wiki/Bounding_sphere
-  float radius = 200;
+  float radius = 150;
   PShape shape;
   // mesh representation
   ArrayList<PVector> vertices;
@@ -26,34 +26,33 @@ class Mesh {
   }
 
   // compute both mesh vertices and pshape
-  // TODO: implement me
   void build() {
     vertices = new ArrayList<PVector>();
-
-    // for example if we were to render a quad:
-    vertices.add(new PVector(-150,150,0));
-    vertices.add(new PVector(150,150,0));
-    vertices.add(new PVector(150,-150,0));
-    vertices.add(new PVector(-150,-150,0));
-    //...
-
+    int n = 20;
+    float angle = 360.0/n;
     shape = createShape();
-    shape.beginShape(QUADS);
-    for(PVector v : vertices)
-      shape.vertex(v.x, v.y ,v.z);
-    shape.endShape();
-
-    //don't forget to compute radius too
+    shape.beginShape(TRIANGLE_FAN);
+    shape.vertex(0, 0);
+    vertices.add(new PVector(0, 0, 0));
+    
+    for (int i = 0; i < n; i++){
+        float x = radius * cos(radians(angle * i));
+        float y = radius * sin(radians(angle * i));
+        shape.vertex(x, y);
+        vertices.add(new PVector(x, y, 0));
+    }
+    
+    shape.vertex(radius, 0);
+    vertices.add(new PVector(radius, 0, 0));
+    shape.endShape(CLOSE);
   }
 
-  // transfer geometry every frame
-  // TODO: current implementation targets a quad.
-  // Adapt me, as necessary
+
   void drawImmediate() {
-    beginShape(QUADS);
+    beginShape(TRIANGLE_FAN);
     for(PVector v : vertices)
       vertex(v.x, v.y ,v.z);
-    endShape();
+    endShape(CLOSE);
   }
 
   void draw() {
