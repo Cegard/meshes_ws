@@ -59,7 +59,6 @@ class Mesh {
     pushStyle();
 
     // mesh visual attributes
-    // manipuate me as you wish
     int strokeWeight = 3;
     color lineColor = color(255, retained ? 0 : 255, 0);
     color faceColor = color(0, retained ? 0 : 255, 255, 100);
@@ -76,7 +75,8 @@ class Mesh {
       noStroke();
       break;
     case 3:
-      // TODO: implement me
+      lineColor = color(0, 0, 0);
+      stroke(lineColor);
       break;
     }
 
